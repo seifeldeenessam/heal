@@ -1,0 +1,28 @@
+section#grid {
+  --size: calc(25% - var(--full-spacing));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
+  gap: var(--full-spacing);
+}
+
+section#grid > * {
+  width: 100% !important;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  section#grid {
+    --size: calc(33.33% - var(--full-spacing));
+  }
+}
+
+@media (min-width: 560px) and (max-width: 767px) {
+  section#grid {
+    --size: calc(50% - var(--full-spacing));
+  }
+}
+
+@media (max-width: 559px) {
+  section#grid {
+    --size: calc(100% - var(--full-spacing));
+  }
+}

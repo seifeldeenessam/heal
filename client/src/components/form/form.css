@@ -1,0 +1,112 @@
+.form-wrapper {
+  width: 60%;
+  height: calc(80vh - calc(var(--full-spacing) * 2));
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  border-radius: var(--border-radius);
+  background-color: var(--background-secondary);
+  box-shadow: 0px 0px 15px 0px var(--shadow);
+  overflow: hidden;
+}
+
+.form-wrapper form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: var(--full-spacing);
+  gap: var(--full-spacing);
+}
+
+.form-wrapper form .header {
+  font-weight: 600;
+  font-size: var(--large-font);
+  color: var(--accent-primary);
+  text-align: center;
+}
+
+.form-wrapper form .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.form-wrapper form .body::-webkit-scrollbar {
+  display: none;
+}
+
+.form-wrapper form .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+}
+
+.form-wrapper form .footer a {
+  font-size: var(--small-font);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.form-wrapper form .footer a:hover {
+  text-decoration: underline;
+}
+
+.form-wrapper > svg {
+  flex: 1;
+  height: 100%;
+  padding: calc(var(--full-spacing) * 2);
+  background-color: var(--accent-primary);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .form-wrapper {
+    width: 50%;
+  }
+
+  .form-wrapper form {
+    width: 100%;
+  }
+
+  .form-wrapper > svg {
+    display: none;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 767px) {
+  .form-wrapper {
+    width: 75%;
+  }
+
+  .form-wrapper form {
+    width: 100%;
+  }
+
+  .form-wrapper > svg {
+    display: none;
+  }
+}
+
+@media (max-width: 559px) {
+  .form-wrapper {
+    width: 100%;
+  }
+
+  .form-wrapper form {
+    width: 100%;
+  }
+
+  .form-wrapper > svg {
+    display: none;
+  }
+}

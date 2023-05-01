@@ -1,0 +1,71 @@
+.account-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+}
+
+.account-details .image {
+  width: 200px;
+  align-self: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 200px;
+  overflow: hidden;
+}
+
+.account-details .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-details .information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+}
+
+.account-details .information li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: calc(var(--half-spacing) / 4);
+  padding: var(--half-spacing);
+  border-radius: var(--border-radius);
+  background-color: var(--background-primary);
+}
+
+.account-details .information li span {
+  font-weight: 500;
+  font-size: var(--small-font);
+}
+
+.account-details .information li small {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 2);
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+  white-space: nowrap;
+}
+
+.account-details .information li small svg {
+  width: var(--small-font);
+  height: var(--small-font);
+}
+
+.account-details .information li small svg path {
+  fill: var(--text-secondary);
+}
+
+.account-details .information li small {
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+  white-space: nowrap;
+}

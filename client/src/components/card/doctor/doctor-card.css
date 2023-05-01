@@ -1,0 +1,108 @@
+.doctor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+  padding: var(--half-spacing);
+  background-color: var(--background-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 15px 0px var(--shadow);
+}
+
+.doctor-card:hover {
+  box-shadow: none;
+}
+
+.doctor-card .image {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.doctor-card .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doctor-card .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: calc(var(--half-spacing) / 4);
+}
+
+.doctor-card .details #name-rating {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 2);
+}
+
+.doctor-card .details #name-rating p {
+  font-weight: 600;
+}
+
+.doctor-card .details #name-rating span {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.doctor-card .details #name-rating span svg {
+  width: var(--small-font);
+  width: var(--small-font);
+}
+
+.doctor-card .details #name-rating span svg path {
+  fill: var(--accent-primary);
+}
+
+.doctor-card .details #information {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: calc(var(--half-spacing) / 4);
+}
+
+.doctor-card .details #information small {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 4);
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+}
+
+.doctor-card .details #information small svg {
+  width: var(--small-font);
+  height: var(--small-font);
+}
+
+.doctor-card .details #information small svg path {
+  fill: var(--text-secondary);
+}
+
+.doctor-card .contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: calc(var(--half-spacing) / 2);
+}
+
+.doctor-card .contact button:first-of-type {
+  flex: 1;
+}
+.doctor-card .contact a button {
+  height: 100%;
+  padding: calc(var(--half-spacing) / 2);
+}

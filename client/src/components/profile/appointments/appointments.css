@@ -1,0 +1,179 @@
+.appointments {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.appointments .no-data {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--full-spacing);
+}
+
+.appointments .no-data svg {
+  width: 50%;
+  height: 50%;
+}
+
+.appointments .no-data span {
+  color: var(--text-secondary);
+}
+
+.appointments ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+}
+
+.appointments ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: var(--half-spacing);
+  border-radius: var(--border-radius);
+  background-color: var(--background-primary);
+}
+
+.appointments ul li .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--half-spacing);
+  cursor: pointer;
+}
+
+.appointments ul li .header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+.appointments ul li .header .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.appointments ul li .header .details span {
+  font-weight: 600;
+  font-size: var(--small-font);
+}
+
+.appointments ul li .header .details small {
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+}
+
+.appointments ul li .header .details small.CONFIRMED {
+  color: #ffbf00;
+}
+
+.appointments ul li .header .details small.DONE {
+  color: var(--success);
+}
+
+.appointments ul li .header .details small.CANCELED {
+  color: var(--fail);
+}
+
+.appointments ul li .header button svg path {
+  fill: var(--text-primary);
+}
+
+.appointments ul li .header button.rotated {
+  transform: scale(-1);
+}
+
+.appointments ul li .body {
+  max-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+  overflow: hidden;
+}
+
+.appointments ul li .body.expanded {
+  max-height: 100vh;
+  margin-top: var(--half-spacing);
+}
+
+.appointments ul li .body div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: calc(var(--half-spacing) / 4);
+  border-radius: var(--border-radius);
+  background-color: var(--background-primary);
+}
+
+.appointments ul li .body div span {
+  font-weight: 500;
+  font-size: var(--small-font);
+}
+
+.appointments ul li .body div small {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 2);
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+  white-space: nowrap;
+}
+
+.appointments ul li .body div small svg {
+  width: var(--small-font);
+  height: var(--small-font);
+}
+
+.appointments ul li .body div small svg path {
+  fill: var(--text-secondary);
+}
+
+.appointments ul li .body p {
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+  padding: var(--half-spacing);
+  border-radius: var(--border-radius);
+  background-color: var(--background-secondary);
+}
+
+.appointments ul li .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+  margin-top: var(--half-spacing);
+}
+
+.appointments ul li .footer input {
+  flex: 1;
+  background-color: var(--background-secondary);
+}
+
+.appointments ul li .footer button {
+  padding: calc(var(--half-spacing) / 2);
+}
+
+.appointments ul li .footer button.fill {
+  flex: 1;
+}

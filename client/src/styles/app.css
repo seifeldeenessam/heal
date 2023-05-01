@@ -1,0 +1,44 @@
+@import url('./constants.css');
+@import url('./fonts.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
+  transition: 300ms;
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: var(--medium-font);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: var(--background-primary);
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.react-datepicker-wrapper .react-datepicker__input-container {
+  display: flex;
+}
+
+.react-datepicker-wrapper .react-datepicker__input-container input {
+  flex: 1;
+}

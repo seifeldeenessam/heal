@@ -1,0 +1,51 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  padding: var(--full-spacing);
+  gap: var(--half-spacing);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2.5px);
+  z-index: 100;
+}
+
+.modal > button {
+  position: absolute;
+  top: var(--full-spacing);
+  right: var(--full-spacing);
+  padding: calc(var(--half-spacing) / 2);
+}
+
+.modal .form-wrapper {
+  width: 40%;
+}
+
+.modal .form-wrapper form {
+  width: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .modal .form-wrapper {
+    width: unset;
+    max-width: 80;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 767px) {
+  .modal .form-wrapper {
+    width: unset;
+    max-width: 80;
+  }
+}
+
+@media (max-width: 559px) {
+  .modal .form-wrapper {
+    width: 100%;
+  }
+}

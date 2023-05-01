@@ -1,0 +1,18 @@
+textarea {
+  background-color: var(--background-primary);
+  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  border-radius: var(--border-radius);
+  font-size: var(--small-font);
+  font-weight: 500;
+  border: thin solid transparent;
+  resize: none;
+}
+
+textarea::placeholder {
+  font-weight: initial;
+  color: var(--text-secondary);
+}
+
+textarea:is(:focus, :hover) {
+  border-color: var(--accent-primary);
+}

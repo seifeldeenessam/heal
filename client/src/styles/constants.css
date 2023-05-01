@@ -1,0 +1,21 @@
+:root {
+  --background-primary: #f1f6f9;
+  --background-secondary: #ffffff;
+  --accent-primary: #fb3b2c;
+  --accent-secondary: #fb3b2c96;
+  --text-primary: #202020;
+  --text-secondary: #b2babe;
+  --success: #03c988;
+  --fail: #f10909;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --extra-small-font: clamp(8px, 10px, 12px);
+  --small-font: clamp(8px, 12px, 16px);
+  --medium-font: clamp(12px, 16px, 20px);
+  --large-font: clamp(20px, 24px, 28px);
+  --extra-large-font: clamp(32px, 40px, 48px);
+  --extra-large-font-x2: clamp(40px, 48px, 56px);
+  --extra-large-font-x4: clamp(72px, 96px, 120px);
+  --full-spacing: 24px;
+  --half-spacing: 12px;
+  --border-radius: 6px;
+}

@@ -1,0 +1,58 @@
+button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 2);
+  padding: calc(var(--half-spacing) / 2) var(--full-spacing);
+  border-radius: var(--border-radius);
+  font-size: var(--small-font);
+  cursor: pointer;
+}
+
+button:hover {
+  border-radius: var(--half-spacing);
+}
+
+button svg {
+  width: var(--medium-font);
+  height: var(--medium-font);
+}
+
+button.primary {
+  background-color: var(--accent-primary);
+  color: var(--background-secondary);
+}
+
+button.primary svg path {
+  fill: var(--background-secondary);
+}
+
+button.secondary {
+  padding: 0;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--accent-primary);
+}
+
+button.secondary svg path {
+  fill: var(--accent-primary);
+}
+
+button.success {
+  background-color: var(--success);
+  color: var(--background-primary);
+}
+
+button.success svg path {
+  fill: var(--background-primary);
+}
+
+button.fail {
+  background-color: var(--fail);
+  color: var(--background-primary);
+}
+
+button.fail svg path {
+  fill: var(--background-primary);
+}

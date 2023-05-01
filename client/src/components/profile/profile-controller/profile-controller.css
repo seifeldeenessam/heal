@@ -1,0 +1,130 @@
+.profile-controller {
+  width: 60%;
+  max-height: calc(80vh - calc(var(--full-spacing) * 2));
+  flex: 1;
+  background-color: var(--background-secondary);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-self: center;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 0px 15px 0px var(--shadow);
+  overflow: hidden;
+}
+
+.profile-controller .side-bar {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--full-spacing);
+  padding: var(--full-spacing);
+  background-color: var(--accent-primary);
+}
+
+.profile-controller .side-bar span {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-weight: 600;
+  font-size: var(--large-font);
+  color: var(--background-secondary);
+}
+
+.profile-controller .side-bar ul {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--half-spacing);
+}
+
+.profile-controller .side-bar ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: calc(var(--half-spacing) / 2);
+  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  border-radius: var(--border-radius);
+  color: var(--background-primary);
+  cursor: pointer;
+}
+
+.profile-controller .side-bar ul li:hover {
+  color: var(--background-primary);
+}
+
+.profile-controller .side-bar ul li.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--background-primary);
+}
+
+.profile-controller .side-bar ul li.active > svg {
+  fill: var(--background-primary);
+}
+
+.profile-controller .side-bar ul li svg {
+  width: var(--medium-font);
+  height: var(--medium-font);
+  fill: var(--text-primary);
+}
+
+.profile-controller .side-bar button {
+  font-weight: 500;
+  color: var(--accent-primary);
+  background-color: var(--background-primary);
+}
+
+.profile-controller .content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: var(--full-spacing);
+  overflow: hidden;
+  overflow-y: visible;
+}
+
+@media (min-width: 899px) and (max-width: 1023px) {
+  .profile-controller {
+    width: 80%;
+  }
+}
+
+@media (min-width: 560px) and (max-width: 898px) {
+  .profile-controller {
+    width: 75%;
+    max-height: unset;
+    flex-direction: column;
+  }
+
+  .profile-controller .side-bar {
+    width: 100%;
+  }
+
+  .profile-controller .content {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 559px) {
+  .profile-controller {
+    width: 100%;
+    max-height: unset;
+    flex-direction: column;
+  }
+
+  .profile-controller .side-bar {
+    width: 100%;
+  }
+
+  .profile-controller .content {
+    overflow: visible;
+  }
+}
