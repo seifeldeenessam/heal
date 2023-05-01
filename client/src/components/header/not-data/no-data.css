@@ -17,7 +17,7 @@ header#no-data article {
 }
 
 header#no-data article h1 {
-  font-size: var(--extra-large-font);
+  font-size: var(--large-font);
   font-weight: 800;
   color: var(--accent-primary);
   white-space: nowrap;

@@ -20,7 +20,7 @@ header article {
 }
 
 header article h1 {
-  font-size: var(--extra-large-font);
+  font-size: var(--large-font);
   font-weight: 800;
   color: var(--accent-primary);
   line-height: 1;
@@ -78,7 +78,7 @@ header svg {
   }
 
   header article h1 {
-    font-size: var(--large-font);
+    font-size: var(--medium-font);
   }
 
   header article p {
