@@ -32,7 +32,7 @@ function Form({ onSubmit, children, message, loading, link, title, illustration 
 				{title && <div className='header'>{title}</div>}
 				<div className='body'>{children}</div>
 				<div className="footer">
-					<Button type='submit' condition={buttonLabel.succeed === null ? 'primary' : buttonLabel.succeed ? 'success' : 'fail'} label={buttonLabel.response!} />
+					<Button type='submit' condition={buttonLabel.succeed === null ? 'primary' : buttonLabel.succeed ? 'success' : 'fail'} label={buttonLabel.response} />
 					{link && <Link to={link.to}>{link.label}</Link>}
 				</div>
 			</form>

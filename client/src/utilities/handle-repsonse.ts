@@ -14,4 +14,4 @@ export default function handleResponse({ setMessage, response, navigate }: IProp
 		navigate('/', { replace: true });
 		window.location.reload();
 	}, 1000);
-};
+}

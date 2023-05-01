@@ -9,11 +9,10 @@ interface IProps {
 function FileInput({ name, setData }: IProps) {
 	const [value, setValue] = useState<File>();
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => setData((current: any) => ({ ...current, [name]: value })), [value]);
 
 	function onChange(e: ChangeEvent<HTMLInputElement>) {
-		setValue(e.target.files![0]);
+		if (e.target.files) setValue(e.target.files[0]);
 	}
 
 	return (

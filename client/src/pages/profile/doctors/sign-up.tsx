@@ -23,7 +23,7 @@ export default function DcotorsSignUpPage() {
 		setLoading(true);
 		const formData = new FormData();
 		formData.append("data", JSON.stringify(data));
-		formData.append("image", data!.image);
+		formData.append("image", data.image);
 		try {
 			const options: RequestInit = { method: "POST", body: formData, cache: "no-store", credentials: "include" };
 			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/doctors/sign-up`, options)).json();
@@ -41,9 +41,9 @@ export default function DcotorsSignUpPage() {
 			<TextInput name='phone' placeholder='Phone number' setData={setData} />
 			<FileInput name="image" setData={setData} />
 			<TextInput name='password' placeholder='Password' setData={setData} secured />
-			<DatePicker selected={data?.birthdate} placeholderText="Birthdate" onChange={(date: Date) => setData((current) => ({ ...current!, birthdate: date }))} dateFormat="dd-MM-yyyy" showMonthDropdown showYearDropdown />
+			<DatePicker selected={data?.birthdate} placeholderText="Birthdate" onChange={(date: Date) => setData((current) => ({ ...current, birthdate: date }))} dateFormat="dd-MM-yyyy" showMonthDropdown showYearDropdown />
 			<RadioInput label="Gender" name="gender" values={["male", "female"]} data={data?.gender} setData={setData} />
-			<MultiTextInput values={data!.specializations} name="specializations" placeholder="Specialization" setData={setData} />
+			<MultiTextInput values={data.specializations} name="specializations" placeholder="Specialization" setData={setData} />
 			<TextInput name='address' placeholder='Address' setData={setData} />
 			<RangeInput label="Pricing range" name="priceRange" setData={setData} />
 		</Form>

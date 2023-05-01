@@ -3,4 +3,4 @@ export default interface Token {
 	type: "Doctor" | "Patient";
 	iat: Date;
 	exp: Date;
-};
+}

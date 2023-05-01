@@ -11,9 +11,7 @@ interface IProps {
 }
 
 function Button({ type = "button", condition, label, icon, className, action }: IProps) {
-	return (
-		<button className={className ? `${condition} ${className}` : condition} type={type} onClick={action}>{label!}{icon!}</button>
-	);
+	return <button className={className ? `${condition} ${className}` : condition} type={type} onClick={action}>{label}{icon}</button>;
 }
 
 export default Button;
