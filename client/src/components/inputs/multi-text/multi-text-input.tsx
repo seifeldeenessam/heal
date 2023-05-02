@@ -1,7 +1,6 @@
+import { ArrowRight, X } from '@phosphor-icons/react';
 import { useState } from 'react';
 import Button from '../../button/button';
-import { ReactComponent as CloseSVG } from './../../../assets/svgs/icons/close.svg';
-import { ReactComponent as ArrowRightSVG } from './../../../assets/svgs/icons/arrow-right.svg';
 import './multi-text-input.css';
 
 interface IProps {
@@ -32,11 +31,11 @@ function MultiTextInput({ values, name, placeholder, setData }: IProps) {
 		<div className='multi-text-input'>
 			<div className="input">
 				<input type="text" name={name} placeholder={placeholder} value={newValue} onChange={(event) => setNewValue(event.target.value)} />
-				<Button condition='secondary' action={handleSubmit} icon={<ArrowRightSVG />} />
+				<Button condition='secondary' action={handleSubmit} icon={<ArrowRight />} />
 			</div>
 			{values.length === 0
 				? undefined
-				: <ul>{values.map((value, index) => <li key={index}><Button condition='secondary' action={() => removeItem(index)} icon={<CloseSVG />} /><small>{value}</small></li>)}</ul>
+				: <ul>{values.map((value, index) => <li key={index}><Button condition='secondary' action={() => removeItem(index)} icon={<X />} /><small>{value}</small></li>)}</ul>
 			}
 		</div>
 	);

@@ -35,7 +35,7 @@ export default function DcotorsSignUpPage() {
 		}
 	}
 	return (
-		<Form onSubmit={onSubmit} title='Welcome to Voithy' message={message} loading={loading} illustration={<DoctorsSVG />}>
+		<Form onSubmit={onSubmit} title='Welcome to Heal' message={message} loading={loading} illustration={<DoctorsSVG />}>
 			<TextInput name='name' placeholder='Full name' setData={setData} />
 			<TextInput name='email' placeholder='Email address' setData={setData} />
 			<TextInput name='phone' placeholder='Phone number' setData={setData} />

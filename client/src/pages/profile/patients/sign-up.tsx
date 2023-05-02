@@ -37,7 +37,7 @@ export default function PatientsSignUpPage() {
 	}
 
 	return (
-		<Form onSubmit={onSubmit} title='Welcome to Voithy' message={message} loading={loading} link={{ to: "/profile/doctors/sign-up", label: "Are you a doctor? sign up here" }} illustration={<PatientsSVG />}>
+		<Form onSubmit={onSubmit} title='Welcome to Heal' message={message} loading={loading} link={{ to: "/profile/doctors/sign-up", label: "Are you a doctor? sign up here" }} illustration={<PatientsSVG />}>
 			<TextInput name='name' placeholder='Full name' setData={setData} />
 			<TextInput name='email' placeholder='Email address' setData={setData} />
 			<TextInput name='phone' placeholder='Phone number' setData={setData} />

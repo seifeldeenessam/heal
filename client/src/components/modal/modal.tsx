@@ -8,8 +8,8 @@ import IUser from '../../interfaces/user';
 import Button from '../button/button';
 import Form from '../form/form';
 import TextAreaInput from '../inputs/textarea/textarea-input';
-import { ReactComponent as CloseSVG } from './../../assets/svgs/icons/close.svg';
 import './modal.css';
+import { X } from '@phosphor-icons/react';
 
 interface IProps {
 	setVisibility: any;
@@ -39,7 +39,7 @@ function Modal({ setVisibility, doctor }: IProps) {
 
 	return (
 		<div className='modal'>
-			<Button condition='primary' action={() => setVisibility(false)} icon={<CloseSVG />} />
+			<Button condition='primary' action={() => setVisibility(false)} icon={<X />} />
 			<Form onSubmit={onSubmit} title={`Reserving with Dr. ${doctor.name}`} message={message} loading={loading}>
 				<TextAreaInput name='description' placeholder='Describe what you feel' setData={setData} />
 				<ReactDatePicker

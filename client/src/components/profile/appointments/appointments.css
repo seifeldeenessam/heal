@@ -170,7 +170,7 @@
   background-color: var(--background-secondary);
 }
 
-.appointments ul li .footer button {
+.appointments ul li .footer > button {
   padding: calc(var(--half-spacing) / 2);
 }
 

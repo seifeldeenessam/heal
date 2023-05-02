@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import DoctorCard from "../components/card/doctor/doctor-card";
 import Grid from "../components/grid/grid";
 import IDoctor from "../interfaces/doctor";
 import NoData from "../components/header/not-data/no-data";
 import Loading from "../components/loading/loading";
+import DoctorCard from "../components/doctor-card/doctor-card";
 
 export default function DoctorsPage() {
 	const [doctors, setDoctors] = useState<IDoctor[]>([]);

@@ -14,6 +14,10 @@ nav a svg {
   height: var(--extra-large-font-x4);
 }
 
+nav a svg path {
+  fill: var(--accent-primary);
+}
+
 nav ul {
   display: flex;
   flex-direction: row;

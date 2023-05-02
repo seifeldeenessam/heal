@@ -1,11 +1,11 @@
 :root {
-  --background-primary: #f1f6f9;
+  --background-primary: #f2f9f1;
   --background-secondary: #ffffff;
-  --accent-primary: #394867;
-  --accent-secondary: #39486796;
+  --accent-primary: #539165;
+  --accent-secondary: #53916596;
   --text-primary: #202020;
   --text-secondary: #b2babe;
-  --success: #03c988;
+  --success: #539165;
   --fail: #f10909;
   --shadow: rgba(0, 0, 0, 0.1);
   --extra-small-font: clamp(8px, 10px, 12px);

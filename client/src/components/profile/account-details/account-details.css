@@ -10,6 +10,7 @@
   width: 200px;
   align-self: center;
   aspect-ratio: 1 / 1;
+  border: thin solid var(--text-secondary);
   border-radius: 200px;
   overflow: hidden;
 }
