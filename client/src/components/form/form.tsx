@@ -28,7 +28,7 @@ function Form({ onSubmit, children, message, loading, link, title, illustration 
 
 	return (
 		<div className="form-wrapper">
-			<form onSubmit={onSubmit}>
+			<form onSubmit={onSubmit} autoComplete='off'>
 				{title && <div className='header'>{title}</div>}
 				<div className='body'>{children}</div>
 				<div className="footer">

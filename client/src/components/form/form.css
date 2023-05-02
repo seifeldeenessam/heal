@@ -37,6 +37,7 @@
   align-items: stretch;
   gap: var(--half-spacing);
   overflow: hidden;
+  scrollbar-width: none;
   overflow-y: auto;
 }
 

@@ -38,7 +38,7 @@ function Modal({ setVisibility, doctor }: IProps) {
 	}
 
 	return (
-		<div className='modal'>
+		<dialog className='modal'>
 			<Button condition='primary' action={() => setVisibility(false)} icon={<X />} />
 			<Form onSubmit={onSubmit} title={`Reserving with Dr. ${doctor.name}`} message={message} loading={loading}>
 				<TextAreaInput name='description' placeholder='Describe what you feel' setData={setData} />
@@ -55,7 +55,7 @@ function Modal({ setVisibility, doctor }: IProps) {
 					showYearDropdown
 				/>
 			</Form>
-		</div>
+		</dialog>
 	);
 }
 
