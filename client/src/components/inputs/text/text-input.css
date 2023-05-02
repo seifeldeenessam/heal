@@ -25,7 +25,7 @@ input:is(:focus, :hover) {
 }
 
 .password-input input {
-  flex: 1;
+  width: 100%;
 }
 
 .password-input button {

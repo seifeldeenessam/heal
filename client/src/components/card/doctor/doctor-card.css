@@ -1,4 +1,6 @@
 .doctor-card {
+  width: calc(25% - var(--half-spacing));
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -102,7 +104,26 @@
 .doctor-card .contact button:first-of-type {
   flex: 1;
 }
+
 .doctor-card .contact a button {
   height: 100%;
   padding: calc(var(--half-spacing) / 2);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .doctor-card {
+    width: calc(33.333333333% - var(--half-spacing));
+  }
+}
+
+@media (min-width: 560px) and (max-width: 767px) {
+  .doctor-card {
+    width: calc(50% - calc(var(--half-spacing) / 2));
+  }
+}
+
+@media (max-width: 559px) {
+  .doctor-card {
+    width: 100%;
+  }
 }
