@@ -4,7 +4,7 @@ import { Mongoose } from 'mongoose';
 export async function databaseConnect(database: Mongoose) {
 	try {
 		database.set('strictQuery', false);
-		await database.connect(`${process.env.DATABASE_URI}`, { dbName: process.env.DATABASE_NAME });
+		await database.connect(process.env.DATABASE_URI!);
 		console.log("✅  Database is connected successfully");
 	} catch (error) {
 		console.error("🚫  Error connecting to database\n", error);
