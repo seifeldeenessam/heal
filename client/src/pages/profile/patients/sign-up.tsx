@@ -14,7 +14,7 @@ import { ReactComponent as PatientsSVG } from './../../../assets/svgs/illustrati
 
 export default function PatientsSignUpPage() {
 	const navigate = useNavigate();
-	const [data, setData] = useState<IPatient>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", diseases: [], bloodType: "A+" });
+	const [data, setData] = useState<IPatient>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", type: "PATIENT", diseases: [], bloodType: "A+" });
 	const [message, setMessage] = useState<IMessage>({ succeed: null, response: null });
 	const [loading, setLoading] = useState<boolean>(false);
 

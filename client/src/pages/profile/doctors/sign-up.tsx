@@ -15,7 +15,7 @@ import { ReactComponent as DoctorsSVG } from './../../../assets/svgs/illustratio
 
 export default function DcotorsSignUpPage() {
 	const navigate = useNavigate();
-	const [data, setData] = useState<IDoctor>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", specializations: [], address: { country: "", city: "", town: "" }, priceRange: { from: 0, to: 0 } });
+	const [data, setData] = useState<IDoctor>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", type: "DOCTOR", specializations: [], address: { country: "", city: "", town: "" }, priceRange: { from: 0, to: 0 } });
 	const [message, setMessage] = useState<IMessage>({ succeed: null, response: null });
 	const [loading, setLoading] = useState<boolean>(false);
 
