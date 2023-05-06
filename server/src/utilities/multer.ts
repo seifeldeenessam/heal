@@ -1,4 +1,5 @@
 import multer, { diskStorage } from "multer";
+import fs from 'fs';
 
 class MulterUtilities {
 	private storage;
@@ -7,7 +8,9 @@ class MulterUtilities {
 	constructor() {
 		this.storage = diskStorage({
 			destination: (request, file, callback) => {
-				callback(null, process.env.ENVIRONMENT === "DEVELOPMENT" ? './src/uploads/' : './dist/uploads/');
+				const path = process.env.ENVIRONMENT === "DEVELOPMENT" ? './src/uploads/' : './dist/uploads/';
+				fs.mkdirSync(path, { recursive: true });
+				callback(null, path);
 			},
 			filename: (request, file, callback) => {
 				callback(null, `${Date.now()}.${file.originalname.split(".").slice(-1)}`);
