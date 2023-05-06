@@ -1,6 +1,8 @@
+import UserType from "../types/user-type";
+
 export default interface Token {
 	id: string;
-	type: "Doctor" | "Patient";
+	type: UserType;
 	iat: Date;
 	exp: Date;
 }

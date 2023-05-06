@@ -3,7 +3,6 @@ import useAuthToken from "../../../hooks/auth-token";
 import IAppointment from "../../../interfaces/appointment";
 import IDoctor from "../../../interfaces/doctor";
 import IPatient from "../../../interfaces/patient";
-import IUser from "../../../interfaces/user";
 import Loading from "../../loading/loading";
 import { ReactComponent as CalendarSVG } from './../../../assets/svgs/illustrations/calendar.svg';
 import './appointments.css';
@@ -11,7 +10,7 @@ import DoctorAppointment from "./doctor-appointment";
 import PatientAppointment from "./patient-appointment";
 
 interface IProps {
-	user: IUser & IDoctor & IPatient;
+	user: IDoctor & IPatient;
 }
 
 export default function Appointments({ user }: IProps) {
@@ -21,21 +20,21 @@ export default function Appointments({ user }: IProps) {
 
 	useEffect(() => {
 		const controller = new AbortController();
-		async function fetchUser(id: string, type: string) {
-			try {
-				const options: RequestInit = { method: "GET", headers: { "Content-Type": "application/json" }, cache: "default" };
-				const response: IAppointment[] = await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/${type.toLocaleLowerCase()}/${id}`, options)).json();
-				setAppointments(response);
-			} catch (error) {
-				console.error("Request error", error);
-			} finally {
-				setLoading(false);
-			}
-		}
-		if (user._id && user.__t) fetchUser(user._id, user.__t);
+		if (user._id && user.type) fetchAppointments(user._id, user.type);
 		return () => controller.abort();
 	}, [user]);
 
+	async function fetchAppointments(id: string, type: string) {
+		try {
+			const options: RequestInit = { method: "GET", headers: { "Content-Type": "application/json" }, cache: "default" };
+			const response: IAppointment[] = await (await fetch(`${import.meta.env.VITE_API_URL}/appointments?document=${type.toLocaleLowerCase()}&id=${id}`, options)).json();
+			setAppointments(response);
+		} catch (error) {
+			console.error("Request error", error);
+		} finally {
+			setLoading(false);
+		}
+	}
 	if (loading) return <Loading expanded={false} />;
 
 	if (appointments.length === 0) {
@@ -51,7 +50,7 @@ export default function Appointments({ user }: IProps) {
 
 	return (
 		<div className="appointments">
-			<ul>{appointments.map((appointment) => authToken?.type === "Patient" ? <PatientAppointment appointment={appointment} key={appointment._id} /> : <DoctorAppointment appointment={appointment} key={appointment._id} />)}</ul>
+			<ul>{appointments.map((appointment) => authToken?.type === "PATIENT" ? <PatientAppointment appointment={appointment} key={appointment._id} /> : <DoctorAppointment appointment={appointment} key={appointment._id} />)}</ul>
 		</div>
 	);
 }

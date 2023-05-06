@@ -1,6 +1,7 @@
 import { CalendarCheck, CaretDown, Check, Coins, Drop, Virus, X } from "@phosphor-icons/react";
 import { useState } from "react";
 import IAppointment from "../../../interfaces/appointment";
+import IMessage from "../../../interfaces/message";
 import capitalizeText from "../../../utilities/capitalize-text";
 import currencyFormat from "../../../utilities/currency-format";
 import dataFormat from "../../../utilities/date-format";
@@ -8,7 +9,7 @@ import Button from "../../button/button";
 import TextInput from "../../inputs/text/text-input";
 
 interface IAppointmentRespond {
-	id: string;
+	_id: string;
 	cost?: number;
 	status: "CONFIRMED" | "CANCELED";
 }
@@ -20,9 +21,10 @@ export default function DoctorAppointment({ appointment }: { appointment: IAppoi
 	async function addRespond(status: IAppointment["status"]) {
 		if (status === "CONFIRMED" && !respond?.cost) return alert("Appointment cost should be set");
 		try {
-			const options: RequestInit = { method: "POST", body: new Blob([JSON.stringify({ ...respond, id: appointment._id, status })], { type: 'application/json' }), cache: "no-store" };
-			await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/respond`, options)).json();
-			setTimeout(() => setExpanded(false), 1000);
+			const options: RequestInit = { method: "POST", body: new Blob([JSON.stringify({ ...respond, _id: appointment._id, status })], { type: 'application/json' }), cache: "no-store" };
+			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/respond`, options)).json();
+			alert(response.response);
+			setExpanded(false);
 		} catch (error) {
 			console.error("Request error", error);
 		}
@@ -43,7 +45,8 @@ export default function DoctorAppointment({ appointment }: { appointment: IAppoi
 				<div><span>Due date</span><small><CalendarCheck />{dataFormat(appointment.date.toString())}</small></div>
 				<div><span>Blood type</span><small><Drop />{appointment.patient.bloodType}</small></div>
 				<div><span>Diseases</span><small><Virus />{appointment.patient.diseases.join(", ")}</small></div>
-				<p>{appointment.description}</p>
+				<div><span>Description</span><p>{appointment.description}</p></div>
+				{appointment.review && <div><span>Review</span><p>Rate: {appointment.review.rate}<br />Comment: {appointment.review.comment}</p></div>}
 			</div>
 			{appointment.status === "PENDDING" && <form className="footer">
 				<TextInput name="cost" placeholder="How much will it cost?" setData={setRespond} />

@@ -139,6 +139,15 @@
   white-space: nowrap;
 }
 
+.appointments ul li .body div p {
+  width: 100%;
+  color: var(--text-secondary);
+  font-size: var(--small-font);
+  padding: var(--half-spacing);
+  border-radius: var(--border-radius);
+  background-color: var(--background-secondary);
+}
+
 .appointments ul li .body div small svg {
   width: var(--small-font);
   height: var(--small-font);

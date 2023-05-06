@@ -36,33 +36,8 @@
   gap: calc(var(--half-spacing) / 4);
 }
 
-.doctor-card .details #name-rating {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: calc(var(--half-spacing) / 2);
-}
-
-.doctor-card .details #name-rating p {
+.doctor-card .details p {
   font-weight: 600;
-}
-
-.doctor-card .details #name-rating span {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.doctor-card .details #name-rating span svg {
-  width: var(--small-font);
-  width: var(--small-font);
-}
-
-.doctor-card .details #name-rating span svg path {
-  fill: var(--accent-primary);
 }
 
 .doctor-card .details #information {

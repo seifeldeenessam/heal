@@ -1,11 +1,23 @@
-import { Model, Schema } from "mongoose";
+import { Request, Response } from "express";
 import IPatient from "../interfaces/patient";
-import { IUserModel } from "../interfaces/user";
-import { User } from "./user";
+import BloodType from "../types/blood-type";
+import Review from "./review";
+import User from "./user";
 
-const schema = new Schema({
-	diseases: { type: [String], trim: true },
-	bloodType: { type: String, enum: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"] },
-}, { timestamps: true, versionKey: false });
+class Patient extends User implements IPatient {
+	public diseases: string[];
+	public bloodType: BloodType;
+	public reviews?: Review[];
 
-export const Patient = User.discriminator<IPatient>('Patient', schema) as Model<IPatient> & IUserModel;
+	constructor({ name, email, phone, image, password, birthdate, gender, type, signUp, diseases, bloodType }: IPatient) {
+		super({ name, email, phone, image, password, birthdate, gender, type, signUp });
+		this.diseases = diseases;
+		this.bloodType = bloodType;
+	}
+
+	async signUp(req: Request, res: Response): Promise<Response | void> {
+		return await super.signUp(req, res, "PATIENT");
+	}
+}
+
+export default Patient;

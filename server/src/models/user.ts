@@ -1,66 +1,76 @@
 import { CookieOptions, Request, Response } from "express";
-import { Model, Schema, model } from "mongoose";
-import IUser, { IUserModel } from "../interfaces/user";
-import { comparePasswords, hashPassword, strongPassword } from '../utilities/passwords';
-import { createToken } from "../utilities/tokens";
+import { ObjectId } from "mongodb";
+import IUser from "../interfaces/user";
+import Gender from "../types/gender";
+import UserType from "../types/user-type";
+import PasswordUtilities from '../utilities/password';
+import TokenUtilities from "../utilities/token";
+import App from "./app";
 
-const schema = new Schema({
-	name: { type: String, required: true, trim: true },
-	email: { type: String, required: true, unique: true, trim: true, lowercase: true },
-	phone: { type: String, required: true, unique: true, sparse: true, trim: true },
-	image: { type: String, required: true },
-	password: { type: String, required: true },
-	birthdate: { type: Date, required: true },
-	gender: { type: String, enum: ["MALE", "FEMALE"], required: true },
-}, { timestamps: true, versionKey: false });
+abstract class User implements IUser {
+	public _id?: ObjectId;
+	public name: string;
+	public email: string;
+	public phone: string;
+	public image: string;
+	public password: string;
+	public birthdate: Date;
+	public gender: Gender;
+	public type: UserType;
+	public createdAt?: Date;
+	public updatedAt?: Date;
 
-schema.methods.age = function age(): number {
-	const now = new Date();
-	const diff = now.getTime() - this.birthdate.getTime();
-	return Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-};
+	constructor({ name, email, phone, image, password, birthdate, gender, type }: IUser) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.image = image;
+		this.password = password;
+		this.birthdate = birthdate;
+		this.gender = gender;
+		this.type = type;
+	}
 
-schema.statics.signUp = async function signUp(req: Request, res: Response): Promise<Response | void> {
-	const data = JSON.parse(req.body.data);
+	async signUp(req: Request, res: Response, type: UserType): Promise<Response | void> {
+		const collection = App.client.db(process.env.DATABASE_NAME).collection("users");
+		const existingUser = await collection.findOne({ $or: [{ email: this.email }, { phone: this.phone }] });
+		if (existingUser) return res.status(403).json({ succeed: false, response: "User is already existed" });
+		const isStrongPassword: boolean = PasswordUtilities.strongPassword(this.password);
+		if (!isStrongPassword) return res.status(403).json({ succeed: false, response: "Password is too weak provide a stronger one" });
+		const hashedPassword: string = PasswordUtilities.hashPassword(this.password);
+		const user = await collection.insertOne({ ...this, password: hashedPassword, image: req.file?.filename, type });
+		const token: string = TokenUtilities.createToken(user.insertedId.toString(), type);
+		const options: CookieOptions = { path: '/', domain: process.env.COOKIES_DOMAIN, maxAge: 1000 * 60 * 60 * 24 * 2, secure: true, sameSite: "lax" };
+		res.status(202).cookie('auth_token', token, options).json({ succeed: true, response: "Sign up succeed" });
+	};
 
-	// Checking for user's existance
-	const existingUser = await this.findOne({ $or: [{ email: data.email }, { phone: data.phone }] }).exec();
-	if (existingUser) return res.status(403).json({ succeed: false, response: "User is already existed" });
+	static async signIn(req: Request, res: Response): Promise<Response | void> {
+		const collection = App.client.db(process.env.DATABASE_NAME).collection("users");
+		const existingUser = await collection.findOne({ email: req.body.email });
+		if (!existingUser) return res.status(403).json({ succeed: false, response: "User is not existed" });
+		const validPassword: boolean = PasswordUtilities.comparePasswords(req.body.password, existingUser.password);
+		if (!validPassword) return res.status(403).json({ succeed: false, response: "Wrong credentials" });
+		const token: string = TokenUtilities.createToken(existingUser._id!.toString(), existingUser.type);
+		const options: CookieOptions = { path: '/', domain: process.env.COOKIES_DOMAIN, maxAge: 1000 * 60 * 60 * 24 * 2, secure: true, sameSite: "lax" };
+		res.status(201).cookie('auth_token', token, options).json({ succeed: true, response: "Sign in succeed" });
+	};
 
-	// Checking if the password is strong
-	const isStrongPassword: boolean = strongPassword(data.password);
-	if (!isStrongPassword) return res.status(403).json({ succeed: false, response: "Password is too weak provide a stronger one" });
+	static signOut(req: Request, res: Response): void {
+		res.status(200).clearCookie('auth_token').json({ succeed: true, response: "Sign out succeed" });
+	}
 
-	// Hashing the password
-	const hashedPassword: string = hashPassword(data.password);
+	static async getOne(req: Request, res: Response): Promise<Response | void> {
+		const collection = App.client.db(process.env.DATABASE_NAME).collection("users");
+		const user = await collection.findOne({ _id: new ObjectId(req.params.id) });
+		if (!user) return res.status(403).json({ succeed: false, response: "User is not existed" });
+		res.status(200).json(user);
+	}
 
-	// Storing the user in the database
-	const user = await this.create({ ...data, password: hashedPassword, image: req.file?.filename });
+	static async getAll(req: Request, res: Response, type: UserType): Promise<Response | void> {
+		const collection = App.client.db(process.env.DATABASE_NAME).collection("users");
+		const users = await collection.find({ type }).toArray();
+		res.status(200).json(users);
+	}
+}
 
-	// Creating a token and setting a `auth_token` cookie in the client
-	const token: string = createToken(user._id.toString(), user.__t);
-	const options: CookieOptions = { path: '/', domain: process.env.COOKIES_DOMAIN, maxAge: 1000 * 60 * 60 * 24 * 2, secure: true, sameSite: "lax" };
-	res.status(202).cookie('auth_token', token, options).json({ succeed: true, response: "Sign up succeed" });
-};
-
-schema.statics.signIn = async function signIn(req: Request, res: Response): Promise<Response | void> {
-	// Checking for user's existance
-	const existingUser: IUser | null = await User.findOne({ email: req.body.email });
-	if (!existingUser) return res.status(403).json({ succeed: false, response: "User is not existed" });
-
-	// Checking if the provided and stored passwords match
-	const validPassword: boolean = comparePasswords(req.body.password, existingUser.password);
-	if (!validPassword) return res.status(403).json({ succeed: false, response: "Wrong credentials" });
-
-	// Creating a token and setting a `auth_token` cookie in the client
-	const token: string = createToken(existingUser._id!.toString(), existingUser.__t!);
-	const options: CookieOptions = { path: '/', domain: process.env.COOKIES_DOMAIN, maxAge: 1000 * 60 * 60 * 24 * 2, secure: true, sameSite: "lax" };
-	res.status(201).cookie('auth_token', token, options).json({ succeed: true, response: "Sign in succeed" });
-};
-
-schema.statics.signOut = async function signOut(req: Request, res: Response): Promise<void> {
-	// Clearing the `auth_token` cookie in the client
-	res.status(200).clearCookie('auth_token').json({ succeed: true, response: "Sign out succeed" });
-};
-
-export const User = model<IUser | IUserModel>('User', schema) as Model<IUser> & IUserModel;
+export default User;

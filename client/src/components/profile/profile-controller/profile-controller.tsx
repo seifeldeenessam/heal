@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import IDoctor from '../../../interfaces/doctor';
 import IMessage from '../../../interfaces/message';
 import IPatient from '../../../interfaces/patient';
-import IUser from '../../../interfaces/user';
 import Button from '../../button/button';
 import AccountDetails from '../account-details/account-details';
 import Appointments from '../appointments/appointments';
 import './profile-controller.css';
 
 interface IProps {
-	user: IUser & IDoctor & IPatient;
+	user: IDoctor & IPatient;
 }
 
 export default function ProfileController({ user }: IProps) {

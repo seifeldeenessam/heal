@@ -1,8 +1,9 @@
+import Review from "./review";
 import IUser from "./user";
 
 export default interface IDoctor extends IUser {
 	specializations: string[];
-	address: string;
+	address: { country: string, city: string, town: string; };
 	priceRange: { from: number; to: number; };
-	rating: number;
+	reviews?: Review[];
 }

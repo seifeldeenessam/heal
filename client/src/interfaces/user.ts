@@ -1,8 +1,8 @@
-import { Gender } from "../types/gender";
+import Gender from "../types/gender";
+import UserType from "../types/user-type";
 
 export default interface IUser {
 	_id?: string;
-	__t?: string;
 	name: string;
 	email: string;
 	phone: string;
@@ -10,6 +10,7 @@ export default interface IUser {
 	password: string;
 	birthdate: Date;
 	gender: Gender;
+	type: UserType;
 	createdAt?: Date;
 	updatedAt?: Date;
 }

@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import DatePicker from 'react-datepicker';
 import { useNavigate } from "react-router-dom";
 import Form from "../../../components/form/form";
+import AddressInput from "../../../components/inputs/address/address-input";
 import FileInput from "../../../components/inputs/file/file-input";
 import MultiTextInput from "../../../components/inputs/multi-text/multi-text-input";
 import RadioInput from "../../../components/inputs/radio/radio-input";
@@ -14,7 +15,7 @@ import { ReactComponent as DoctorsSVG } from './../../../assets/svgs/illustratio
 
 export default function DcotorsSignUpPage() {
 	const navigate = useNavigate();
-	const [data, setData] = useState<IDoctor>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", specializations: [], address: "", priceRange: { from: 0, to: 0 }, rating: 0 });
+	const [data, setData] = useState<IDoctor>({ name: "", email: "", phone: "", image: "", password: "", birthdate: new Date("2000-01-01"), gender: "MALE", specializations: [], address: { country: "", city: "", town: "" }, priceRange: { from: 0, to: 0 } });
 	const [message, setMessage] = useState<IMessage>({ succeed: null, response: null });
 	const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,7 +27,7 @@ export default function DcotorsSignUpPage() {
 		formData.append("image", data.image);
 		try {
 			const options: RequestInit = { method: "POST", body: formData, cache: "no-store", credentials: "include" };
-			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/doctors/sign-up`, options)).json();
+			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/doctors`, options)).json();
 			handleResponse({ setMessage: setMessage, response, navigate });
 		} catch (error) {
 			console.error("Request error", error);
@@ -34,6 +35,7 @@ export default function DcotorsSignUpPage() {
 			setLoading(false);
 		}
 	}
+
 	return (
 		<Form onSubmit={onSubmit} title='Welcome to Heal' message={message} loading={loading} illustration={<DoctorsSVG />}>
 			<TextInput name='name' placeholder='Full name' setData={setData} />
@@ -44,7 +46,7 @@ export default function DcotorsSignUpPage() {
 			<DatePicker selected={data?.birthdate} placeholderText="Birthdate" onChange={(date: Date) => setData((current) => ({ ...current, birthdate: date }))} dateFormat="dd-MM-yyyy" showMonthDropdown showYearDropdown />
 			<RadioInput label="Gender" name="gender" values={["male", "female"]} data={data?.gender} setData={setData} />
 			<MultiTextInput values={data.specializations} name="specializations" placeholder="Specialization" setData={setData} />
-			<TextInput name='address' placeholder='Address' setData={setData} />
+			<AddressInput name="address" setData={setData} />
 			<RangeInput label="Pricing range" name="priceRange" setData={setData} />
 		</Form>
 	);

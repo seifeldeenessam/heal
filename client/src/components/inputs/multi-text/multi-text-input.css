@@ -46,7 +46,7 @@
 
 .multi-text-input ul li button svg {
   width: var(--small-font);
-  width: var(--small-font);
+  height: var(--small-font);
 }
 
 .multi-text-input .input {

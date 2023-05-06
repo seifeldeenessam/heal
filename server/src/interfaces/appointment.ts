@@ -1,16 +1,18 @@
-import { ObjectId } from "mongoose";
-import IDoctor from "./doctor";
-import IPatient from "./patient";
+import { Request, Response } from "express";
+import { ObjectId } from "mongodb";
+import Review from "../models/review";
+import AppointmentStatus from "../types/appointment-status";
 
 export default interface IAppointment {
 	_id?: ObjectId;
-	doctor: IDoctor;
-	patient: IPatient;
+	doctor: ObjectId;
+	patient: ObjectId;
 	date: Date;
-	status: "PENDDING" | "CONFIRMED" | "DONE" | "CANCELED";
+	status: AppointmentStatus;
 	description: string;
 	cost?: number;
-	review?: { rate: number; comment: string; };
+	review?: Review;
 	createdAt?: Date;
 	updatedAt?: Date;
+	create(req: Request, res: Response): Promise<Response | void>;
 }

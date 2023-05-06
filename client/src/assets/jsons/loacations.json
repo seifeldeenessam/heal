@@ -1,0 +1,23 @@
+{
+	"Egypt": {
+		"cities": {
+			"Cairo": {
+				"towns": [
+					"El Sherouk City",
+					"New Cairo",
+					"Nasr City",
+					"First Settlement",
+					"Third Settlement",
+					"Fifth Settlement"
+				]
+			},
+			"Giza": {
+				"towns": [
+					"Maadi",
+					"Octobr",
+					"EL Sheikh Zayed"
+				]
+			}
+		}
+	}
+}

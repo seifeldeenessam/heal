@@ -1,6 +1,7 @@
-import { ArrowRight, CalendarCheck, CaretDown, Check, Coins, FirstAid, Star, X } from "@phosphor-icons/react";
+import { ArrowRight, CalendarCheck, CaretDown, ChatCenteredDots, Check, Coins, FirstAid, Star, X } from "@phosphor-icons/react";
 import { Dispatch, useState } from "react";
 import IAppointment from "../../../interfaces/appointment";
+import IMessage from "../../../interfaces/message";
 import capitalizeText from "../../../utilities/capitalize-text";
 import currencyFormat from "../../../utilities/currency-format";
 import dataFormat from "../../../utilities/date-format";
@@ -10,6 +11,16 @@ import TextInput from "../../inputs/text/text-input";
 
 export default function PatientAppointment({ appointment }: { appointment: IAppointment; }) {
 	const [expanded, setExpanded] = useState<boolean>(false);
+
+	function renderForms() {
+		if (appointment.status === "DONE" && !appointment.review) {
+			return <ReviewForm appointmentId={appointment._id!} setExpanded={setExpanded} />;
+		} else if (appointment.status === "PENDDING" || appointment.status === "CONFIRMED") {
+			return <RespondForm appointmentId={appointment._id!} setExpanded={setExpanded} />;
+		} else {
+			return undefined;
+		}
+	}
 
 	return (
 		<li>
@@ -25,29 +36,21 @@ export default function PatientAppointment({ appointment }: { appointment: IAppo
 				{appointment.cost && <div><span>Cost</span><small><Coins />{currencyFormat(appointment.cost)}</small></div>}
 				<div><span>Due date</span><small><CalendarCheck />{dataFormat(appointment.date.toString())}</small></div>
 				<div><span>Specializations</span><small><FirstAid />{appointment.doctor.specializations.join(", ")}</small></div>
-				<div><span>Rate</span><small><Star />{appointment.doctor.rating}</small></div>
+				{appointment.review && <div><span>Review</span><small><Star />{appointment.review.rate}</small><small><ChatCenteredDots />{appointment.review.comment}</small></div>}
 				<p>{appointment.description}</p>
 			</div>
-			{appointment.status === "DONE" ? <ReviewForm setExpanded={setExpanded} /> : <RespondForm appointmentId={appointment._id!} setExpanded={setExpanded} />}
+			{renderForms()}
 		</li>
 	);
 }
 
-interface IAppointmentRespond {
-	id: string;
-	cost?: number;
-	status: "CONFIRMED" | "CANCELED";
-}
-
 function RespondForm({ appointmentId, setExpanded }: { appointmentId: string; setExpanded: Dispatch<React.SetStateAction<boolean>>; }) {
-	const [respond] = useState<IAppointmentRespond>();
-
 	async function addRespond(status: IAppointment["status"]) {
-		if (status === "CONFIRMED" && !respond?.cost) return alert("Appointment cost should be set");
 		try {
-			const options: RequestInit = { method: "POST", body: new Blob([JSON.stringify({ ...respond, id: appointmentId, status })], { type: 'application/json' }), cache: "no-store" };
-			await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/respond`, options)).json();
-			setTimeout(() => setExpanded(false), 1000);
+			const options: RequestInit = { method: "POST", body: new Blob([JSON.stringify({ _id: appointmentId, status })], { type: 'application/json' }), cache: "no-store" };
+			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/respond`, options)).json();
+			alert(response.response);
+			setExpanded(false);
 		} catch (error) {
 			console.error("Request error", error);
 		}
@@ -60,22 +63,30 @@ function RespondForm({ appointmentId, setExpanded }: { appointmentId: string; se
 }
 
 interface IAppointmentReview {
-	id: string;
+	_id: string;
 	comment: string;
-	rating: number;
+	rate: number;
 }
 
-function ReviewForm({ setExpanded }: { setExpanded: Dispatch<React.SetStateAction<boolean>>; }) {
+function ReviewForm({ appointmentId, setExpanded }: { appointmentId: string; setExpanded: Dispatch<React.SetStateAction<boolean>>; }) {
 	const [review, setReview] = useState<IAppointmentReview>();
 
 	async function addReview() {
 		if (!review?.comment) return alert("You have to include a comment");
-		setExpanded(false);
+		if (review?.rate === 0) return alert("Are you sure about the (0) rate?");
+		try {
+			const options: RequestInit = { method: "POST", body: new Blob([JSON.stringify({ ...review, _id: appointmentId })], { type: 'application/json' }), cache: "no-store" };
+			const response: IMessage = await (await fetch(`${import.meta.env.VITE_API_URL}/appointments/review`, options)).json();
+			alert(response.response);
+			setExpanded(false);
+		} catch (error) {
+			console.error("Request error", error);
+		}
 	}
 
 	return <form className="footer">
 		<TextInput name="comment" placeholder="Any comments?" setData={setReview} />
-		<NumberInput name="rating" data={review?.rating ?? 0} setData={setReview} max={5} />
+		<NumberInput name="rate" data={review?.rate ?? 0} setData={setReview} max={5} />
 		<Button condition="secondary" action={addReview} icon={<ArrowRight />} />
 	</form>;
 }
