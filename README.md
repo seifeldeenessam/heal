@@ -5,6 +5,6 @@
 - Use `reviews` collection
 - Remove `review` property from the `appointment` document
 - Transfer `appointment` reviews to the new `reviews` collection
-- Populate `doctor` documnets with the corresponding reviews
-- Calculate each doctor raing
+- Populate `doctor` documents with the corresponding reviews
+- Calculate each doctor rating
 - Create `DoctorDetailsPage`
