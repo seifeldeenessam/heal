@@ -1,25 +1,35 @@
 .doctor-card {
-  width: calc(25% - var(--half-spacing));
-  flex-shrink: 0;
+  position: relative;
+  height: 450px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: stretch;
-  gap: var(--half-spacing);
-  padding: var(--half-spacing);
   background-color: var(--background-secondary);
   border-radius: var(--border-radius);
-  box-shadow: 0px 0px 15px 0px var(--shadow);
+  overflow: hidden;
 }
 
-.doctor-card:hover {
-  box-shadow: none;
+.doctor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+  z-index: 2;
 }
 
 .doctor-card .image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 3 / 4;
   border-radius: var(--border-radius);
   overflow: hidden;
+  z-index: 0;
 }
 
 .doctor-card .image img {
@@ -31,61 +41,60 @@
 .doctor-card .details {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: calc(var(--half-spacing) / 4);
+  gap: var(--spacing);
+  padding: var(--spacing);
+  z-index: 5;
 }
 
 .doctor-card .details p {
-  font-weight: 600;
+  font: var(--sub-title);
+  color: var(--background-secondary);
 }
 
-.doctor-card .details #information {
+.doctor-card .details .information {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: calc(var(--half-spacing) / 4);
+  justify-content: start;
+  align-items: start;
+  gap: var(--half-spacing);
 }
 
-.doctor-card .details #information small {
+.doctor-card .details .information small {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: center;
-  gap: calc(var(--half-spacing) / 4);
+  gap: var(--half-spacing);
   color: var(--text-secondary);
-  font-size: var(--small-font);
+  font: var(--sub-text);
 }
 
-.doctor-card .details #information small svg {
-  width: var(--small-font);
-  height: var(--small-font);
-}
-
-.doctor-card .details #information small svg path {
+.doctor-card .details .information small svg path {
   fill: var(--text-secondary);
 }
 
-.doctor-card .contact {
+.doctor-card .details .contact {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: calc(var(--half-spacing) / 2);
+  gap: var(--half-spacing);
+  z-index: 5;
 }
 
-.doctor-card .contact button:first-of-type {
+.doctor-card .details .contact button:first-of-type {
   flex: 1;
 }
 
-.doctor-card .contact a button {
+.doctor-card .details .contact a button {
   height: 100%;
-  padding: calc(var(--half-spacing) / 2);
+  padding-inline: var(--spacing);
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+/* @media (min-width: 768px) and (max-width: 1023px) {
   .doctor-card {
     width: calc(33.333333333% - var(--half-spacing));
   }
@@ -101,4 +110,4 @@
   .doctor-card {
     width: 100%;
   }
-}
+} */

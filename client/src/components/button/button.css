@@ -3,20 +3,20 @@ button {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--half-spacing) / 2);
-  padding: calc(var(--half-spacing) / 2) var(--full-spacing);
+  gap: var(--half-spacing);
+  padding: var(--spacing) var(--double-spacing);
   border-radius: var(--border-radius);
-  font-size: var(--small-font);
+  font: var(--sub-label);
   cursor: pointer;
 }
 
 button:hover {
-  border-radius: var(--half-spacing);
+  border-radius: var(--circular-border-radius);
 }
 
 button svg {
-  width: var(--medium-font);
-  height: var(--medium-font);
+  max-width: var(--double-spacing);
+  height: auto;
 }
 
 button.primary {

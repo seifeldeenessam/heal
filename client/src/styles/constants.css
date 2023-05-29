@@ -2,20 +2,30 @@
   --background-primary: #f2f9f1;
   --background-secondary: #ffffff;
   --accent-primary: #539165;
-  --accent-secondary: #53916596;
+  --accent-secondary: #98bda3;
   --text-primary: #202020;
   --text-secondary: #b2babe;
   --success: #539165;
   --fail: #f10909;
   --shadow: rgba(0, 0, 0, 0.1);
-  --extra-small-font: clamp(8px, 10px, 12px);
-  --small-font: clamp(8px, 12px, 16px);
-  --medium-font: clamp(12px, 16px, 20px);
-  --large-font: clamp(20px, 24px, 28px);
-  --extra-large-font: clamp(32px, 40px, 48px);
-  --extra-large-font-x2: clamp(40px, 48px, 56px);
-  --extra-large-font-x4: clamp(72px, 96px, 120px);
-  --full-spacing: 24px;
-  --half-spacing: 12px;
-  --border-radius: 6px;
+
+  /* Headings Font Styles */
+  --main-heading: 700 clamp(2rem, 2.25rem, 2.5rem) 'Poppins', sans-serif;
+  --sub-heading: 700 clamp(1.25rem, 1.5rem, 2rem) 'Poppins', sans-serif;
+  /* Titles Font Styles */
+  --main-title: 600 clamp(1rem, 1.25rem, 1.5rem) 'Poppins', sans-serif;
+  --sub-title: 600 clamp(0.8rem, 1rem, 1.25rem) 'Poppins', sans-serif;
+  /* Labels Font Styles */
+  --main-label: 500 clamp(0.8rem, 1rem, 1.25rem) 'Poppins', sans-serif;
+  --sub-label: 500 clamp(0.6rem, 0.8rem, 1rem) 'Poppins', sans-serif;
+  /* Texts Font Styles */
+  --main-text: 400 clamp(0.8rem, 1rem, 1.25rem) 'Poppins', sans-serif;
+  --sub-text: 400 clamp(0.7rem, 0.8rem, 1rem) 'Poppins', sans-serif;
+
+  /* Spacing Units */
+  --spacing: 0.75rem;
+  --double-spacing: 1.5rem;
+  --half-spacing: 0.375rem;
+  --border-radius: 0.75rem;
+  --circular-border-radius: 10rem;
 }

@@ -1,14 +1,12 @@
 input {
   background-color: var(--background-primary);
-  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  padding: var(--spacing);
   border-radius: var(--border-radius);
-  font-size: var(--small-font);
-  font-weight: 500;
   border: thin solid transparent;
+  font: var(--sub-label);
 }
 
 input::placeholder {
-  font-weight: initial;
   color: var(--text-secondary);
 }
 
@@ -19,9 +17,9 @@ input:is(:focus, :hover) {
 .password-input {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: calc(var(--half-spacing) / 2);
+  gap: var(--spacing);
 }
 
 .password-input input {
@@ -30,13 +28,17 @@ input:is(:focus, :hover) {
 
 .password-input button {
   background-color: var(--background-primary);
-  padding: calc(var(--half-spacing) / 2);
+  padding: var(--spacing);
   border: thin solid transparent;
 }
 
 .password-input button:hover {
   border-radius: var(--border-radius);
   border-color: var(--accent-primary);
+}
+
+.password-input button:hover > svg path {
+  fill: var(--accent-primary);
 }
 
 .password-input button svg path {

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from './components/footer/footer';
 import Main from './components/main/main';
-import Nav from './components/nav/nav';
+import Header from './components/header/header';
 import AppRoutes from './routes/app';
 import './styles/app.css';
 
@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <CookiesProvider>
       <BrowserRouter>
-        <Nav />
+        <Header />
         <Main>
           <AppRoutes />
         </Main>

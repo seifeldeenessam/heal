@@ -1,10 +1,10 @@
 .range-input {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
   gap: var(--half-spacing);
-  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  padding: var(--spacing);
   background-color: var(--background-primary);
   border-radius: var(--border-radius);
   border: thin solid transparent;
@@ -15,7 +15,7 @@
 }
 
 .range-input small {
-  font-size: var(--small-font);
+  font: var(--sub-label);
   color: var(--text-secondary);
   cursor: default;
 }
@@ -23,8 +23,8 @@
 .range-input .inputs {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: start;
+  align-items: start;
   gap: calc(var(--half-spacing) / 2);
 }
 

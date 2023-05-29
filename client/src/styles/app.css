@@ -10,10 +10,8 @@
   list-style: none;
   text-decoration: none;
   transition: 300ms;
+  font: var(--main-text);
   color: var(--text-primary);
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-  font-size: var(--medium-font);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -22,7 +20,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
   background-color: var(--background-primary);
 }
@@ -31,7 +29,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
 }
 

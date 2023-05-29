@@ -1,5 +1,9 @@
-import Banner from "../components/header/banner/banner";
+import IntroductionHero from "../components/hero/introduction/introduction";
 
 export default function HomePage() {
-	return <Banner />;
+	return (
+		<>
+			<IntroductionHero />
+		</>
+	);
 }

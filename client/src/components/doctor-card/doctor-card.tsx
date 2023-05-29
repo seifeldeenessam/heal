@@ -1,4 +1,4 @@
-import { At, Coins, FirstAid, MapPin, Phone } from '@phosphor-icons/react';
+import { At, Coins, FirstAid, FirstAidKit, MapPin, Phone } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import useAuthToken from '../../hooks/auth-token';
 import IDoctor from '../../interfaces/doctor';
@@ -27,17 +27,17 @@ function DoctorCard({ data }: IProps) {
 			</div>
 			<div className="details">
 				<p>Dr. {data.name}</p>
-				<div id="information">
-					<small><FirstAid /> {data.specializations.join(" + ")}</small>
+				<div className="information">
+					<small><FirstAidKit /> {data.specializations.join(" + ")}</small>
 					<small><MapPin /> {Object.values(data.address).reverse().join(", ")}</small>
 					<small><Coins /> {currencyFormat(data.priceRange.from)} ~ {currencyFormat(data.priceRange.to)}</small>
 				</div>
+				{authToken && authToken.type === "PATIENT" && <div className="contact">
+					<Button condition='primary' action={() => setReserving(true)} label="Reserve now" />
+					<a href={`tel:+2${data.phone}`} target='_blank' rel="noreferrer"><Button condition='primary' icon={<Phone />} /></a>
+					<a href={`mailto:${data.email}`} target='_blank' rel="noreferrer"><Button condition='primary' icon={<At />} /></a>
+				</div>}
 			</div>
-			{authToken && authToken.type === "PATIENT" && <div className="contact">
-				<Button condition='primary' action={() => setReserving(true)} label="Reserve now" />
-				<a href={`tel:+2${data.phone}`} target='_blank' rel="noreferrer"><Button condition='primary' icon={<Phone />} /></a>
-				<a href={`mailto:${data.email}`} target='_blank' rel="noreferrer"><Button condition='primary' icon={<At />} /></a>
-			</div>}
 			{reserving && <Modal setVisibility={setReserving} doctor={data} />}
 		</div>
 	);

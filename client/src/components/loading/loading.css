@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--full-spacing);
+  gap: var(--spacing);
 }
 
 #loading.fitted {

@@ -1,11 +1,12 @@
 .form-wrapper {
   width: 50%;
-  height: calc(80vh - calc(var(--full-spacing) * 2));
+  height: calc(80vh - calc(var(--spacing) * 2));
   align-self: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
+  margin: var(--double-spacing);
   border-radius: var(--border-radius);
   background-color: var(--background-secondary);
   box-shadow: 0px 0px 15px 0px var(--shadow);
@@ -16,15 +17,13 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  padding: var(--full-spacing);
-  gap: var(--full-spacing);
+  padding: var(--double-spacing);
 }
 
 .form-wrapper form .header {
-  font-weight: 600;
-  font-size: var(--large-font);
+  font: var(--sub-heading);
   color: var(--accent-primary);
   text-align: center;
 }
@@ -33,9 +32,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: var(--half-spacing);
+  gap: var(--spacing);
+  padding-block: var(--double-spacing);
   overflow: hidden;
   scrollbar-width: none;
   overflow-y: auto;
@@ -48,13 +48,13 @@
 .form-wrapper form .footer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: var(--half-spacing);
+  gap: var(--spacing);
 }
 
 .form-wrapper form .footer a {
-  font-size: var(--small-font);
+  font: var(--sub-text);
   color: var(--text-secondary);
   text-align: center;
 }
@@ -66,7 +66,7 @@
 .form-wrapper > svg {
   flex: 1;
   height: 100%;
-  padding: calc(var(--full-spacing) * 2);
+  padding: calc(var(--spacing) * 2);
   background-color: var(--accent-secondary);
 }
 

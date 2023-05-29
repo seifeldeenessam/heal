@@ -1,15 +1,13 @@
 textarea {
   background-color: var(--background-primary);
-  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  padding: var(--spacing);
   border-radius: var(--border-radius);
-  font-size: var(--small-font);
-  font-weight: 500;
+  font: var(--sub-label);
   border: thin solid transparent;
   resize: none;
 }
 
 textarea::placeholder {
-  font-weight: initial;
   color: var(--text-secondary);
 }
 

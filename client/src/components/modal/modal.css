@@ -7,8 +7,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  padding: var(--full-spacing);
-  gap: var(--half-spacing);
+  padding: var(--spacing);
+  gap: var(--spacing);
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2.5px);
   z-index: 100;
@@ -16,9 +16,9 @@
 
 .modal > button {
   position: absolute;
-  top: var(--full-spacing);
-  right: var(--full-spacing);
-  padding: calc(var(--half-spacing) / 2);
+  top: var(--double-spacing);
+  right: var(--double-spacing);
+  padding: var(--spacing);
 }
 
 .modal .form-wrapper {

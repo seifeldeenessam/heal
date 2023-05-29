@@ -1,9 +1,9 @@
 .number-input {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: calc(var(--half-spacing) / 2);
+  gap: var(--half-spacing);
   background-color: var(--background-secondary);
   border-radius: var(--border-radius);
 }
@@ -15,5 +15,5 @@
 }
 
 .number-input button {
-  padding: calc(var(--half-spacing) / 2);
+  padding: var(--half-spacing);
 }

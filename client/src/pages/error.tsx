@@ -1,4 +1,4 @@
-import NotFound from "../components/header/not-found/not-found";
+import NotFound from "../components/hero/not-found/not-found";
 
 export default function ErrorPage() {
 	return <NotFound />;

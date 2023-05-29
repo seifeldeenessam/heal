@@ -1,0 +1,56 @@
+header {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: calc(var(--double-spacing) * 2);
+  background-color: var(--background-secondary);
+}
+
+header > svg {
+  width: calc(var(--double-spacing) * 4);
+  height: auto;
+}
+
+header > svg path {
+  fill: var(--accent-primary);
+}
+
+header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: start;
+  gap: var(--double-spacing);
+}
+
+header nav a {
+  display: flex;
+}
+
+header nav a svg {
+  width: var(--double-spacing);
+  height: auto;
+}
+
+header nav a svg path {
+  fill: var(--accent-secondary);
+}
+
+header nav a:is(:hover, .active) svg path {
+  fill: var(--accent-primary);
+}
+
+@media (min-width: 560px) and (max-width: 767px) {
+  nav {
+    padding-inline: var(--spacing);
+  }
+}
+
+@media (max-width: 559px) {
+  nav {
+    padding-inline: var(--spacing);
+  }
+}

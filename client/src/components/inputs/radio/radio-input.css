@@ -1,10 +1,10 @@
 .radio-input {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
   gap: var(--half-spacing);
-  padding: calc(var(--half-spacing) / 2) var(--half-spacing);
+  padding: var(--spacing);
   background-color: var(--background-primary);
   border-radius: var(--border-radius);
   border: thin solid transparent;
@@ -15,14 +15,15 @@
 }
 
 .radio-input small {
-  font-size: var(--small-font);
+  font: var(--sub-label);
   color: var(--text-secondary);
   cursor: default;
 }
 
 .radio-input ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(25%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(25% - var(--half-spacing)), 1fr));
+  gap: var(--half-spacing);
 }
 
 .radio-input ul li {
@@ -31,12 +32,11 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: calc(var(--half-spacing) / 2);
-  font-size: var(--small-font);
-  font-weight: 500;
+  gap: var(--half-spacing);
+  font: var(--sub-label);
   text-transform: capitalize;
   border-radius: var(--border-radius);
-  padding: calc(var(--half-spacing) / 2) 0;
+  padding-block: var(--half-spacing);
   cursor: pointer;
 }
 

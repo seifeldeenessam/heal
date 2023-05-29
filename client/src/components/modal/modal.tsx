@@ -39,7 +39,7 @@ function Modal({ setVisibility, doctor }: IProps) {
 
 	return (
 		<dialog className='modal'>
-			<Button condition='primary' action={() => setVisibility(false)} icon={<X />} />
+			<Button condition='fail' action={() => setVisibility(false)} icon={<X weight='bold' />} />
 			<Form onSubmit={onSubmit} title={`Reserving with Dr. ${doctor.name}`} message={message} loading={loading}>
 				<TextAreaInput name='description' placeholder='Describe what you feel' setData={setData} />
 				<ReactDatePicker

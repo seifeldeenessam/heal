@@ -1,13 +1,14 @@
 .account-details {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: var(--half-spacing);
+  gap: var(--spacing);
 }
 
 .account-details .image {
   width: 200px;
+  height: auto;
   align-self: center;
   aspect-ratio: 1 / 1;
   border: thin solid var(--text-secondary);
@@ -24,41 +25,35 @@
 .account-details .information {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: stretch;
-  gap: var(--half-spacing);
+  gap: var(--spacing);
 }
 
 .account-details .information li {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: calc(var(--half-spacing) / 4);
-  padding: var(--half-spacing);
+  justify-content: start;
+  align-items: start;
+  gap: var(--half-spacing);
+  padding: var(--spacing);
   border-radius: var(--border-radius);
   background-color: var(--background-primary);
 }
 
 .account-details .information li span {
-  font-weight: 500;
-  font-size: var(--small-font);
+  font: var(--sub-title);
 }
 
 .account-details .information li small {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: start;
   align-items: center;
-  gap: calc(var(--half-spacing) / 2);
+  gap: var(--half-spacing);
   color: var(--text-secondary);
-  font-size: var(--small-font);
+  font: var(--sub-text) !important;
   white-space: nowrap;
-}
-
-.account-details .information li small svg {
-  width: var(--small-font);
-  height: var(--small-font);
 }
 
 .account-details .information li small svg path {

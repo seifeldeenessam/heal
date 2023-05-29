@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Grid from "../components/grid/grid";
 import IDoctor from "../interfaces/doctor";
-import NoData from "../components/header/not-data/no-data";
+import NoData from "../components/hero/no-data/no-data";
 import Loading from "../components/loading/loading";
 import DoctorCard from "../components/doctor-card/doctor-card";
 
