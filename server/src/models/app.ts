@@ -17,7 +17,7 @@ class App {
 	constructor() {
 		dotenv.config();
 		this.express = express();
-		this.client = new MongoClient(process.env.DATABASE_URI!);
+		this.client = new MongoClient(process.env.DATABASE_URI as string);
 		this.loadCongratulations();
 		this.loadRoutes();
 	}
